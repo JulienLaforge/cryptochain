@@ -1,0 +1,78 @@
+var helpers = require("../../../node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _TransactionJs = require('./Transaction.js');
+  var _TransactionJsDefault = _parcelHelpers.interopDefault(_TransactionJs);
+  var _reactBootstrap = require('react-bootstrap');
+  function _defineProperty(obj, key, value) {
+    if ((key in obj)) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+  class Block extends _react.Component {
+    constructor(...args) {
+      super(...args);
+      _defineProperty(this, "state", {
+        displayTransaction: false
+      });
+      _defineProperty(this, "toggleTransaction", () => {
+        this.setState({
+          displayTransaction: !this.state.displayTransaction
+        });
+      });
+    }
+    get displayTransaction() {
+      const {data} = this.props.block;
+      const stringifyData = JSON.stringify(data);
+      const dataDisplay = stringifyData.length > 15 ? `${stringifyData.substring(0, 15)}...` : stringifyData;
+      if (this.state.displayTransaction) {
+        return (
+          /*#__PURE__*/_reactDefault.default.createElement("div", null, data.map(transaction => /*#__PURE__*/_reactDefault.default.createElement("div", {
+            key: transaction.id
+          }, /*#__PURE__*/_reactDefault.default.createElement("hr", null), /*#__PURE__*/_reactDefault.default.createElement(_TransactionJsDefault.default, {
+            transaction: transaction
+          }))), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+            bsStyle: "danger",
+            bsSize: "small",
+            onClick: this.toggleTransaction
+          }, "Show less"))
+        );
+      }
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", null, /*#__PURE__*/_reactDefault.default.createElement("div", null, "Data : ", dataDisplay), /*#__PURE__*/_reactDefault.default.createElement("br", null), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+          bsStyle: "danger",
+          bsSize: "small",
+          onClick: this.toggleTransaction
+        }, "Show more"))
+      );
+    }
+    render() {
+      const {timestamp, hash} = this.props.block;
+      const hashDisplay = `${hash.substring(0, 15)}...`;
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "Block"
+        }, /*#__PURE__*/_reactDefault.default.createElement("div", null, "Hash : ", hashDisplay), /*#__PURE__*/_reactDefault.default.createElement("div", null, "Timestamp : ", new Date(timestamp).toLocaleString()), this.displayTransaction)
+      );
+    }
+  }
+  exports.default = Block;
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}

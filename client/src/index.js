@@ -6,7 +6,6 @@ import App from './components/App';
 import Blocks from './components/Blocks';
 import ConductTransaction from './components/ConductTransaction';
 import TransactionPool from './components/TransactionPool';
-import './index.css';
 
 render(
   <Router history={history}>
