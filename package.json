@@ -5,7 +5,7 @@
     "node": "10.x"
   },
   "description": "",
-  "main": "index.html",
+  "main": "client/dist/index.html",
   "scripts": {
     "test": "jest --watchAll",
     "start": "npm run build-client & node index.js",
